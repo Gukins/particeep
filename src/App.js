@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import {React, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import * as actions from './redux/action/applications';
 import './App.css';
+import GridCard from './component/GridCard/GridCard';
+import Filter from './component/Filter/Filter';
+import Pagination from './component/Pagination/Pagination';
+
+import {movies$} from './data/movies.js';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    movies$.then(result => {
+      dispatch(actions.getAllMovies(result));
+    });
+  }, [])
+
+  const handleSelectCategory = (nameCategory) => {
+    dispatch(actions.updateFilterState(nameCategory));
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+        <Filter handleSelectCategory={handleSelectCategory}/>
+        <GridCard/>
+        <Pagination/>
+      </div>
+    </>
   );
 }
 
