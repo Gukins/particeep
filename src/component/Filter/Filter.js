@@ -28,9 +28,9 @@ function Filter() {
 
   return (
     <>
-        <div class="form-group">
+        <div className="form-group">
             <label htmlFor="select" style={{fontWeight:"bold"}}>Filtre par categorie</label>
-            <select value={selectedOption} onChange={e => dispatch(actions.updateFilterState(e.target.value))} class="form-control" id="select">
+            <select value={selectedOption} onChange={e => dispatch(actions.updateFilterState(e.target.value))} className="form-control" id="select">
                 <option value="none" selected>Tous</option>
                 {mapCategoriyList}
             </select>

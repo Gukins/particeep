@@ -15,6 +15,8 @@ function App() {
   useEffect(() => {
     movies$.then(result => {
       dispatch(actions.getAllMovies(result));
+    }).catch(err => { 
+      console.log(err) 
     });
   }, [])
 
